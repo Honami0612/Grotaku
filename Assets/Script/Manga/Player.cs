@@ -23,29 +23,27 @@ public class Player : MonoBehaviour
 
     int num = 0;
 
-    public List<int> test = new List<int>();
+    Button button;
+
+    [SerializeField]
+    Text getPointText;
+    int point=0;
 
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < options.Length; i++) all_Number.Add(i);
         for (int k = 0; k < three_optionSprite.Length; k++) options_Number.Add(k);
+        button = GameObject.Find("Option1").GetComponent<Button>();
+        button.Select();
+        getPointText.text = "Point: " + point.ToString();
 
-       
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovePos();
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-           
-            MangaChange();
-        }
-
-        
-        
+        //MovePos();
     }
 
     void MovePos()
@@ -91,9 +89,48 @@ public class Player : MonoBehaviour
 
         options_Number_storage.Clear();
         for (int i = 0; i < options.Length; i++) all_Number.Add(i);
-
     }
 
 
+  
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Options")
+        {
+            Debug.Log(collision.gameObject.GetComponent<SpriteRenderer>().sprite.name);
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+
+                if (collision.gameObject.GetComponent<SpriteRenderer>().sprite.name == wantSprite.GetComponent<SpriteRenderer>().sprite.name)
+                {
+                    Debug.Log("Collect");
+                    MangaChange();
+                }
+
+            }
+
+        }
+        
+    }
+
+    public void But(GameObject witch)
+    {
+        if (witch.GetComponent<SpriteRenderer>().sprite.name == wantSprite.GetComponent<SpriteRenderer>().sprite.name)
+        {
+            MangaChange();
+            point += 20;
+            getPointText.text = "Point: " + point.ToString();
+        }
+        else
+        {
+            point -= 10;
+            getPointText.text = "Point: " + point.ToString();
+        }
+    }
+
+   
+
+
+   
 }

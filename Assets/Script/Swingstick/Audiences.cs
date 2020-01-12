@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Audiences : MonoBehaviour
 {
@@ -37,15 +38,14 @@ public class Audiences : MonoBehaviour
         timerText.text = "time:" + now_time.ToString();
         if (timersum <= 0) timerText.text = "Finish" ;
 
-
-
         Interval();
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K)) Swing();
+
+        if (now_time <= 0)
         {
-            Swing();
+           //SelectScene
         }
-       
     }
 
     void Swing()
