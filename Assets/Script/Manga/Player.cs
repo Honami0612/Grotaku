@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -29,6 +30,14 @@ public class Player : MonoBehaviour
     Text getPointText;
     int point=0;
 
+    [SerializeField]
+    Text timeText;
+    [SerializeField]
+    float sumTime;
+    int nowTime;
+    [SerializeField]
+    Text goSelect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +46,7 @@ public class Player : MonoBehaviour
         button = GameObject.Find("Option1").GetComponent<Button>();
         button.Select();
         getPointText.text = "Point: " + point.ToString();
+        goSelect.enabled = false;
 
     }
 
@@ -44,6 +54,18 @@ public class Player : MonoBehaviour
     void Update()
     {
         //MovePos();
+        sumTime -= Time.deltaTime;
+        nowTime = (int)sumTime;
+        timeText.text = "Time: " + nowTime.ToString();
+        if (nowTime < 0)
+        {
+            timeText.enabled = false;
+            goSelect.enabled = true;
+            if (Input.GetKey(KeyCode.X))
+            {
+                SceneManager.LoadScene("SelectScene");
+            }
+        }
     }
 
     void MovePos()
@@ -116,17 +138,21 @@ public class Player : MonoBehaviour
 
     public void But(GameObject witch)
     {
-        if (witch.GetComponent<SpriteRenderer>().sprite.name == wantSprite.GetComponent<SpriteRenderer>().sprite.name)
+        if (nowTime >= 0)
         {
-            MangaChange();
-            point += 20;
-            getPointText.text = "Point: " + point.ToString();
+            if (witch.GetComponent<SpriteRenderer>().sprite.name == wantSprite.GetComponent<SpriteRenderer>().sprite.name)
+            {
+                MangaChange();
+                point += 20;
+                getPointText.text = "Point: " + point.ToString();
+            }
+            else
+            {
+                point -= 10;
+                getPointText.text = "Point: " + point.ToString();
+            }
         }
-        else
-        {
-            point -= 10;
-            getPointText.text = "Point: " + point.ToString();
-        }
+       
     }
 
    

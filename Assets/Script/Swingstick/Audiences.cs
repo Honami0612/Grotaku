@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Audiences : MonoBehaviour
 {
     [SerializeField]
-    Text text;
+    Text GoSelectText;
 
     [SerializeField]
     Sprite[] audience_option;
@@ -28,6 +28,7 @@ public class Audiences : MonoBehaviour
     {
         audience = this.GetComponent<SpriteRenderer>();
         audience.sprite = audience_option[0];
+        GoSelectText.enabled = false;
     }
 
     // Update is called once per frame
@@ -40,27 +41,36 @@ public class Audiences : MonoBehaviour
 
         Interval();
 
-        if (Input.GetKeyDown(KeyCode.K)) Swing();
-
         if (now_time <= 0)
         {
-           //SelectScene
+            //GotoSelectScene
+            timerText.enabled = false;
+            GoSelectText.enabled = true;
+            if (Input.GetKey(KeyCode.X))
+            {
+                SceneManager.LoadScene("SelectScene");
+            }
+          
         }
     }
 
     void Swing()
     {
+        if (now_time > 0)
+        {
+            if (number_audience == 0)
+            {
+                audience.sprite = audience_option[1];
+                number_audience = 1;
+            }
+            else if (number_audience == 1)
+            {
+                audience.sprite = audience_option[0];
+                number_audience = 0;
+            }
+        }
         
-        if (number_audience==0)
-        {
-            audience.sprite = audience_option[1];
-            number_audience= 1;
-        }
-        else if (number_audience==1)
-        {
-            audience.sprite = audience_option[0];
-            number_audience = 0;
-        }
+       
     }
 
     void Interval()
@@ -68,7 +78,11 @@ public class Audiences : MonoBehaviour
         timeElapsed += Time.deltaTime;
         if (now_time > 55) swing_interval = 1;
         else if ((now_time <= 55) && (now_time > 40)) swing_interval = 0.5f;
-       
+        else if ((now_time <= 40) && (now_time > 30)) swing_interval = 1f;
+        else if ((now_time <= 30) && (now_time > 0)) swing_interval = 0.5f;
+
+
+
         if (timeElapsed >= swing_interval)
         {
             Swing();

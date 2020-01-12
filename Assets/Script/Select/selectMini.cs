@@ -30,6 +30,9 @@ public class selectMini : MonoBehaviour
             case 2:
                 SceneManager.LoadScene("SwingstickScene");
                 break;
+            case 3:
+                SceneManager.LoadScene("PickCatchScene");
+                break;
         }
     }
 }
