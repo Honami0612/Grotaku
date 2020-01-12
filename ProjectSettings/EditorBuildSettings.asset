@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SwingstickScene.unity
     guid: 1c2917f29f69349728a086612950ba46
+  - enabled: 1
+    path: Assets/Scenes/PickCatchScene.unity
+    guid: ec4be2acd238b473bbf274610487b26e
   m_configObjects: {}
