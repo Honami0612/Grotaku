@@ -109,6 +109,7 @@
     <Compile Include="Assets\Script\Manga\aaaaa.cs" />
     <Compile Include="Assets\Script\Manga\Player.cs" />
     <Compile Include="Assets\Script\PickCatch\Catch.cs" />
+    <Compile Include="Assets\Script\PickCatch\Pick.cs" />
     <Compile Include="Assets\Script\Select\selectMini.cs" />
     <Compile Include="Assets\Script\Swingstick\Audiences.cs" />
     <Compile Include="Assets\Script\Swingstick\swingOtaku.cs" />

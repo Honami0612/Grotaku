@@ -76,12 +76,12 @@ public class selectMini : MonoBehaviour
         }
         else if (animator[1].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
         {
-            gameExplainText.text = "~~manga~~";
+            gameExplainText.text = "~~manga~~\nSelect:⇦⇨\nChose:Enter\nPick up select one";
 
         }
         else if (animator[2].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
         {
-            gameExplainText.text = "~~swing~~";
+            gameExplainText.text = "~~swing~~\nCurrently not available\nComing soon!!!";
 
         }
         else if (animator[3].GetCurrentAnimatorStateInfo(0).IsName("Selected"))

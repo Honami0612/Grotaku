@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
             goSelect.enabled = true;
             wantSprite.SetActive(false);
             lastPointText.enabled = true;
+            getPointText.enabled = false;
             lastPointText.text = "Poin " + point.ToString() + "!!!";
             if (Input.GetKey(KeyCode.X))
             {
