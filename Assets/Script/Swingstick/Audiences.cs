@@ -9,8 +9,8 @@ public class Audiences : MonoBehaviour
     [SerializeField]
     Text GoSelectText;
 
-    [SerializeField]
-    Sprite[] audience_option;
+    //[SerializeField]
+    //Sprite[] audience_option;
     int number_audience = 0;
     private SpriteRenderer audience;
 
@@ -23,12 +23,15 @@ public class Audiences : MonoBehaviour
     private float swing_interval;
     private float timeElapsed;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         audience = this.GetComponent<SpriteRenderer>();
-        audience.sprite = audience_option[0];
+        //audience.sprite = audience_option[0];
         GoSelectText.enabled = false;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -60,12 +63,12 @@ public class Audiences : MonoBehaviour
         {
             if (number_audience == 0)
             {
-                audience.sprite = audience_option[1];
+                //audience.sprite = audience_option[1];
                 number_audience = 1;
             }
             else if (number_audience == 1)
             {
-                audience.sprite = audience_option[0];
+                //audience.sprite = audience_option[0];
                 number_audience = 0;
             }
         }
@@ -76,10 +79,27 @@ public class Audiences : MonoBehaviour
     void Interval()
     {
         timeElapsed += Time.deltaTime;
-        if (now_time > 55) swing_interval = 1;
-        else if ((now_time <= 55) && (now_time > 40)) swing_interval = 0.5f;
-        else if ((now_time <= 40) && (now_time > 30)) swing_interval = 1f;
-        else if ((now_time <= 30) && (now_time > 0)) swing_interval = 0.5f;
+        if (now_time > 55)
+        {
+            swing_interval = 1;
+            animator.speed = 0.5f;
+
+        }
+        else if ((now_time <= 55) && (now_time > 40))
+        {
+            swing_interval = 0.5f;
+            animator.speed = 1f;
+        }
+        else if ((now_time <= 40) && (now_time > 30))
+        {
+            swing_interval = 1f;
+            animator.speed = 0.5f;
+        }
+        else if ((now_time <= 30) && (now_time > 0))
+        {
+            swing_interval = 0.5f;
+            animator.speed = 1f;
+        }
 
 
 

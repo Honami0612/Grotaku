@@ -9,6 +9,15 @@ public class selectMini : MonoBehaviour
 
     Button button;
     AudioSource audioSource;
+
+   
+
+    [SerializeField]
+    Text gameExplainText;
+    [SerializeField]
+    Animator[] animator;
+
+   
     
     // Start is called before the first frame update
     void Start()
@@ -22,9 +31,21 @@ public class selectMini : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetKeyDown(KeyCode.LeftArrow))))
         {
-            Debug.Log("e");
             audioSource.Play();
         }
+
+        ChangeText();
+        
+      
+        //if (ani.SetTrigger=="Selected"))
+        //{
+        //    gameExplainText.text = "aaa";
+        //}
+        //else
+        //{
+        //    gameExplainText.text = "iii";
+        //}
+
     }
     public void SceneChange(int number)
     {
@@ -47,10 +68,32 @@ public class selectMini : MonoBehaviour
        
     }
 
+    void ChangeText()
+    {
+        if (animator[0].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
+        {
+            gameExplainText.text = "glasses\naaa";
+        }
+        else if (animator[1].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
+        {
+            gameExplainText.text = "manga";
+
+        }
+        else if (animator[2].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
+        {
+            gameExplainText.text = "swing";
+
+        }
+        else if (animator[3].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
+        {
+            gameExplainText.text = "pick";
+
+        }
+    }
+
     public IEnumerator Change()
     {
         yield return new WaitForSeconds(1);
         
-
     }
 }

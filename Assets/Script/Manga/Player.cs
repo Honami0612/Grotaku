@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     Text getPointText;
+    [SerializeField]
+    Text lastPointText;
     int point=0;
 
     [SerializeField]
@@ -38,6 +40,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     Text goSelect;
 
+    TypefaceAnimator pointObj;
+
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip[] getPointSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +55,8 @@ public class Player : MonoBehaviour
         button.Select();
         getPointText.text = "Point: " + point.ToString();
         goSelect.enabled = false;
+        lastPointText.enabled = false;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -61,6 +71,9 @@ public class Player : MonoBehaviour
         {
             timeText.enabled = false;
             goSelect.enabled = true;
+            wantSprite.SetActive(false);
+            lastPointText.enabled = true;
+            lastPointText.text = "Poin " + point.ToString() + "!!!";
             if (Input.GetKey(KeyCode.X))
             {
                 SceneManager.LoadScene("SelectScene");
@@ -79,38 +92,20 @@ public class Player : MonoBehaviour
 
     void MangaChange()
     {
-
+        three_Number.Clear();
+        List<int> tempList = new List<int> { 0, 1, 2, 3 };
         for (int j = 0; j < 3; j++)
         {
-            int choice = Random.Range(0, all_Number.Count);
-            int ransu = all_Number[choice];
-            three_Number.Add(ransu);
-            all_Number.RemoveAt(choice);
+            int choice = Random.Range(0, tempList.Count);
+            three_Number.Add(tempList[choice]);
+            Debug.Log("Choice; " + options[three_Number[j]]);
+            tempList.RemoveAt(choice);
+            three_optionSprite[j].GetComponent<SpriteRenderer>().sprite = options[three_Number[j]];
         }
-       
-        all_Number.Clear();
         
-        wantSprite.GetComponent<SpriteRenderer>().sprite = options[three_Number[0]];
+        wantSprite.GetComponent<SpriteRenderer>().sprite = options[three_Number[Random.Range(0, three_Number.Count)]];
 
-        for (int h = 0; h < options_Number.Count; h++)
-        {
-            //どこに正解を置くか配列内にて数値を変更してる
-            int aaa = options_Number[h];
-            int three_ransu = Random.Range(0, options_Number.Count);
-            options_Number[h] = options_Number[three_ransu];
-            options_Number[three_ransu] = aaa;
-        }
-        for(int ff = 0; ff < 3; ff++)
-        {
-           //選択肢sprite変更
-            three_optionSprite[options_Number[ff]].GetComponent<SpriteRenderer>().sprite = options[three_Number[num]];
-            num++;
-        }
-        num = 0;
-        three_Number.Clear();
 
-        options_Number_storage.Clear();
-        for (int i = 0; i < options.Length; i++) all_Number.Add(i);
     }
 
 
@@ -120,20 +115,14 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Options")
         {
-            Debug.Log(collision.gameObject.GetComponent<SpriteRenderer>().sprite.name);
             if (Input.GetKeyDown(KeyCode.S))
             {
-
                 if (collision.gameObject.GetComponent<SpriteRenderer>().sprite.name == wantSprite.GetComponent<SpriteRenderer>().sprite.name)
                 {
-                    Debug.Log("Collect");
                     MangaChange();
                 }
-
             }
-
         }
-        
     }
 
     public void But(GameObject witch)
@@ -143,15 +132,27 @@ public class Player : MonoBehaviour
             if (witch.GetComponent<SpriteRenderer>().sprite.name == wantSprite.GetComponent<SpriteRenderer>().sprite.name)
             {
                 MangaChange();
+                audioSource.PlayOneShot(getPointSound[0]);
                 point += 20;
                 getPointText.text = "Point: " + point.ToString();
+                pointObj = GameObject.Find("Point").GetComponent<TypefaceAnimator>();
+                pointObj.enabled = true;
+                StartCoroutine("TextEnabled");
             }
             else
             {
                 point -= 10;
                 getPointText.text = "Point: " + point.ToString();
+                audioSource.PlayOneShot(getPointSound[1]);
             }
         }
+       
+    }
+
+    IEnumerator TextEnabled()
+    {
+        yield return new WaitForSeconds(0.3f);
+        pointObj.enabled = false;
        
     }
 
