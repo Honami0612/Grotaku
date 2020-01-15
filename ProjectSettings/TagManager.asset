@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Options
   - pick
+  - ground
   layers:
   - Default
   - TransparentFX

@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/GlassesScene.unity
-    guid: e1055c5fe666e4ab28ce519739f8821b
-  - enabled: 1
     path: Assets/Scenes/MangaScene.unity
     guid: 2eb03da2eb4ec4031877383396d295a8
   - enabled: 1

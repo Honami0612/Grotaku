@@ -19,7 +19,7 @@ public class aaaaa : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Yo");
+            Debug.Log("YoCo");
         }
     }
 
@@ -27,7 +27,7 @@ public class aaaaa : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Yoo");
+            Debug.Log("YooTri");
         }
     }
 }
