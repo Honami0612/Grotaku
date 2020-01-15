@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{8D018F7E-24CB-BED0-DDEE-E0F030C523C4}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Manga/Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Swingstick/Audiences.cs">
     <Files>
-      <File FileName="Assets/Script/Swingstick/audiences.cs" Line="70" Column="14" />
-      <File FileName="Assets/Script/Swingstick/swingOtaku.cs" />
-      <File FileName="Assets/Script/Manga/Player.cs" Line="112" Column="10" />
+      <File FileName="Assets/Script/Swingstick/audiences.cs" Line="19" Column="21" />
+      <File FileName="Assets/Script/Swingstick/swingOtaku.cs" Line="86" Column="44" />
+      <File FileName="Assets/Script/Manga/Player.cs" Line="154" Column="45" />
       <File FileName="Assets/Script/Glasses/FallGlasses.cs" />
-      <File FileName="Assets/Script/Select/selectMini.cs" />
+      <File FileName="Assets/Script/Select/selectMini.cs" Line="75" Column="46" />
       <File FileName="Assets/Script/Manga/aaaaa.cs" />
       <File FileName="Assets/Script/PickCatch/Catch.cs" />
     </Files>
