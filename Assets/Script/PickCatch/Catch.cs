@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Catch : MonoBehaviour
 {
-
+    //OtakuObject
     GameObject otaku;
 
+    //PickObject
     [SerializeField]
     GameObject pick;
 
@@ -18,12 +19,13 @@ public class Catch : MonoBehaviour
     private Camera mainCamera;
     private Vector2 destination;
 
-    GameObject c;
-
+   
+    //Point
     [SerializeField]
     Text pointText;
     int point=0;
 
+    //Timer
     [SerializeField]
     float sumTime;
     [SerializeField]
@@ -31,16 +33,35 @@ public class Catch : MonoBehaviour
     int nowTime;
     [SerializeField]
     Text pushX;
+    private TypefaceAnimator typefaceAnimator;
 
-    
+    //SpriteRote
+    int key;
+    Rigidbody2D rb;
+
+    //Sound
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip[] getdestroy;
+
+    //AnimationState
+    string state;
+
+    [SerializeField]
+    Sprite[] particle;
+
     // Start is called before the first frame update
     void Start()
     {
+        typefaceAnimator = GameObject.Find("Point").GetComponent<TypefaceAnimator>();
+        typefaceAnimator.enabled = false;
         otaku = this.gameObject;
         spanTime = Random.Range(3, 5);
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         pointText.text = "Point: " + point.ToString();
         pushX.enabled = false;
+        rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -50,28 +71,54 @@ public class Catch : MonoBehaviour
         nowTime = (int)sumTime;
         timeText.text = "Time: " + nowTime.ToString();
         countTime += Time.deltaTime;
-        if (countTime >= spanTime) Pick();
-        Move();
+       
         if (c != null) c.transform.position = Vector2.Lerp(c.transform.position, destination, Time.deltaTime * 1);
-        if (nowTime < 0)
+        if (nowTime>0)
         {
+            if (countTime >= spanTime) Pick();
+            Move();
+            //rb.velocity = new Vector2(rote * 5f, 0);
+            transform.localScale = new Vector3(key * 0.65f, 0.75f, 0);
+
+        }
+        else if(nowTime < 0)
+        {
+            state = "Stay";
             timeText.enabled = false;
             pushX.enabled = true;
             if (Input.GetKey(KeyCode.X)) SceneManager.LoadScene("SelectScene");
-            
         }
-
     }
 
     void Move()
-    {
-        if (Input.GetKey(KeyCode.RightArrow)) otaku.transform.position = new Vector3(otaku.transform.position.x + 0.1f, otaku.transform.position.y, 0);
-        else if (Input.GetKey(KeyCode.LeftArrow)) otaku.transform.position = new Vector3(otaku.transform.position.x - 0.1f, otaku.transform.position.y, 0);
+    { 
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            
+            key = 1;
+            otaku.transform.position = new Vector3(otaku.transform.position.x + 0.1f, otaku.transform.position.y, 0);
+            state = "Walk";
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+           
+            key = -1;
+            otaku.transform.position = new Vector3(otaku.transform.position.x - 0.1f, otaku.transform.position.y, 0);
+            state = "Walk";
+        }
+        else
+        {
+            
+            state = "Stay";
+        }
+        
     }
 
     void Pick()
     {
-        c=Instantiate(pick);
+        GameObject c;
+        c =Instantiate(pick);
         destination = mainCamera.ScreenToWorldPoint(new Vector2(Random.Range(0,Screen.width), -6));
         StartCoroutine("Wait");
         spanTime = Random.Range(3, 5);
@@ -83,15 +130,28 @@ public class Catch : MonoBehaviour
     {
         if (collision.gameObject.tag == "pick")
         {
+            typefaceAnimator.enabled = true;
             Destroy(collision.gameObject);
             point += 20;
             pointText.text = "Point: " + point.ToString();
+            audioSource.PlayOneShot(getdestroy[0]);
+            StartCoroutine("Typeface");
         }
     }
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(1.6f);
         Destroy(c);
+        if (c != null)
+        {
+            audioSource.PlayOneShot(getdestroy[1]);
+        }
+    }
+
+    IEnumerator Typeface()
+    {
+        yield return new WaitForSeconds(0.25f);
+        typefaceAnimator.enabled = false;
     }
 }

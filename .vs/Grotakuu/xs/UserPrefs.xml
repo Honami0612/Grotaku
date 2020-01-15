@@ -1,13 +1,15 @@
 ﻿<Properties StartupConfiguration="{8D018F7E-24CB-BED0-DDEE-E0F030C523C4}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Swingstick/Audiences.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/PickCatch/Catch.cs">
     <Files>
+      <File FileName="Assets/Script/Select/selectMini.cs" Line="100" Column="1" />
+      <File FileName="Assets/Script/Select/selectMini.cs" Line="100" Column="1" />
+      <File FileName="Assets/Script/Select/selectMini.cs" Line="100" Column="1" />
       <File FileName="Assets/Script/Swingstick/audiences.cs" Line="19" Column="21" />
-      <File FileName="Assets/Script/Swingstick/swingOtaku.cs" Line="86" Column="44" />
-      <File FileName="Assets/Script/Manga/Player.cs" Line="154" Column="45" />
+      <File FileName="Assets/Script/Swingstick/swingOtaku.cs" />
+      <File FileName="Assets/Script/Manga/Player.cs" />
       <File FileName="Assets/Script/Glasses/FallGlasses.cs" />
-      <File FileName="Assets/Script/Select/selectMini.cs" Line="75" Column="46" />
       <File FileName="Assets/Script/Manga/aaaaa.cs" />
-      <File FileName="Assets/Script/PickCatch/Catch.cs" />
+      <File FileName="Assets/Script/PickCatch/Catch.cs" Line="34" Column="15" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,7 +21,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a8f3497c-624c-4e3f-8a78-5105db3155a3" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="7fcb49c6-6362-4dcf-a398-154bec292cc7" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

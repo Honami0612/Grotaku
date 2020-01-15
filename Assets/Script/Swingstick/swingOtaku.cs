@@ -17,16 +17,18 @@ public class swingOtaku : MonoBehaviour
     [SerializeField]
     Text pointText;
     bool point = true;
-
-   
    
     Animator nowAnimator;
 
     string state;
 
+    private TypefaceAnimator typefaceAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
+        typefaceAnimator = GameObject.Find("Point").GetComponent<TypefaceAnimator>();
+        typefaceAnimator.enabled = false;
         audiences = GameObject.Find("Audience").GetComponent<Audiences>();
         otaku = this.GetComponent<SpriteRenderer>();
         otaku.sprite = otaku_option[0];
@@ -89,14 +91,22 @@ public class swingOtaku : MonoBehaviour
         {
             if (number_otaku == number_audience)
             {
+                typefaceAnimator.enabled = true;
                 sum_point += 1;
                 point = false;
+                StartCoroutine("type");
             }
             before = number_audience;
         }
         
         pointText.text = "Point:" + sum_point.ToString();
        
+    }
+
+    IEnumerator type()
+    {
+        yield return new WaitForSeconds(0.25f);
+        typefaceAnimator.enabled = false;
     }
 
 }

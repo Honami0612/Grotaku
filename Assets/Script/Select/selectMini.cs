@@ -22,7 +22,7 @@ public class selectMini : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        button = GameObject.Find("Canvas/MiniGame/glasses").GetComponent<Button>();
+        button = GameObject.Find("Canvas/MiniGame/manga").GetComponent<Button>();
         button.Select();
         audioSource = this.gameObject.GetComponent<AudioSource>();
     }
@@ -76,17 +76,17 @@ public class selectMini : MonoBehaviour
         }
         else if (animator[1].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
         {
-            gameExplainText.text = "manga";
+            gameExplainText.text = "~~manga~~";
 
         }
         else if (animator[2].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
         {
-            gameExplainText.text = "swing";
+            gameExplainText.text = "~~swing~~";
 
         }
         else if (animator[3].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
         {
-            gameExplainText.text = "pick";
+            gameExplainText.text = "~~pick~~\nWalk:⇦⇨\n️Get idol band picks!";
 
         }
     }
