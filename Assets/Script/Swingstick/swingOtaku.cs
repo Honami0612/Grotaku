@@ -24,6 +24,9 @@ public class swingOtaku : MonoBehaviour
 
     private TypefaceAnimator typefaceAnimator;
 
+    [SerializeField]
+    GameObject[] otakuLight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +38,7 @@ public class swingOtaku : MonoBehaviour
         nowAnimator = GetComponent<Animator>();
         state = "Green";
         pointText.text = "Point:" + sum_point.ToString();
-
+        otakuLight[1].SetActive(false);
 
     }
 
@@ -45,6 +48,7 @@ public class swingOtaku : MonoBehaviour
         GetPoint();
         if (Input.GetKeyDown(KeyCode.S)) Swing();
         GetPoint();
+        number_audience = audiences.Number;
         if (before != number_audience) point = true;
         ChangeAnimation();
     }
@@ -55,12 +59,16 @@ public class swingOtaku : MonoBehaviour
         {
             state = "Blue";
 
+            otakuLight[0].SetActive(false);
+            otakuLight[1].SetActive(true);
             otaku.sprite = otaku_option[1];
             number_otaku = 1;
         }
         else if ((number_otaku == 1)||(state=="Blue"))
         {
             state = "Green";
+            otakuLight[0].SetActive(true);
+            otakuLight[1].SetActive(false);
             otaku.sprite = otaku_option[0];
             number_otaku = 0;
         }
@@ -93,6 +101,7 @@ public class swingOtaku : MonoBehaviour
             {
                 typefaceAnimator.enabled = true;
                 sum_point += 1;
+                
                 point = false;
                 StartCoroutine("type");
             }

@@ -15,7 +15,7 @@ public class Audiences : MonoBehaviour
     private SpriteRenderer audience;
 
     [SerializeField]
-    float timersum;
+    float swintimersum;
     [SerializeField]
     Text timerText;
     int now_time;
@@ -37,10 +37,10 @@ public class Audiences : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timersum -= Time.deltaTime;
-        now_time = (int)timersum;
+        swintimersum -= Time.deltaTime;
+        now_time = (int)swintimersum;
         timerText.text = "time:" + now_time.ToString();
-        if (timersum <= 0) timerText.text = "Finish" ;
+        if (swintimersum <= 0) timerText.text = "Finish" ;
 
         Interval();
 
