@@ -25,6 +25,9 @@ public class Audiences : MonoBehaviour
 
     private Animator animator;
 
+    private Animator green;
+    private Animator yellow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,8 @@ public class Audiences : MonoBehaviour
         //audience.sprite = audience_option[0];
         GoSelectText.enabled = false;
         animator = GetComponent<Animator>();
+        green = GameObject.Find("green").GetComponent<Animator>();
+        yellow = GameObject.Find("yellow").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -83,22 +88,30 @@ public class Audiences : MonoBehaviour
         {
             swing_interval = 1;
             animator.speed = 0.5f;
+            green.speed = 0.5f;
+            yellow.speed = 0.5f;
 
         }
         else if ((now_time <= 55) && (now_time > 40))
         {
             swing_interval = 0.5f;
             animator.speed = 1f;
+            green.speed = 1f;
+            yellow.speed = 1f;
         }
         else if ((now_time <= 40) && (now_time > 30))
         {
             swing_interval = 1f;
             animator.speed = 0.5f;
+            green.speed = 0.5f;
+            yellow.speed = 0.5f;
         }
         else if ((now_time <= 30) && (now_time > 0))
         {
             swing_interval = 0.5f;
             animator.speed = 1f;
+            green.speed = 1f;
+            yellow.speed = 1f;
         }
 
 
