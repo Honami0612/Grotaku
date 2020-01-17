@@ -81,7 +81,7 @@ public class selectMini : MonoBehaviour
         }
         else if (animator[2].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
         {
-            gameExplainText.text = "~~swing~~\nCurrently not available\nComing soon!!!";
+            gameExplainText.text = "~~swing~~\nSwing:Enter\nSwing with the crowd!";
 
         }
         else if (animator[3].GetCurrentAnimatorStateInfo(0).IsName("Selected"))
